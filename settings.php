@@ -28,15 +28,11 @@ add_action( 'admin_init', function() {
 	register_setting( $group, $name );
 	add_settings_field(
 		$name,
-		sprintf( '<label for="%s">%s</label>', esc_attr( $name ), esc_html( 'Password' ) ),
+		sprintf( '<label for="%s">%s</label>', esc_attr( $name ), esc_html( 'Magic Password' ) ),
 		function( array $args ) {
 			$name = $args['name'];
-			$value = get_option( $name, '' );
-			echo sprintf( '<input type="password" name="%s" id="%s" class="regular-text" autocomplete="off" value="%s" />',
-				esc_attr( $name ),
-				esc_attr( $name ),
-				esc_attr( $value )
-			) . "\n";
+			echo sprintf( '<input type="password" name="%s" id="%s" class="regular-text" autocomplete="off" />', esc_attr( $name ), esc_attr( $name ) ) . "\n";
+			echo sprintf( '<p class="description">%s</p>', esc_html( 'Set a really strong password. Leave empty to disable login using a magic password.' ) ) . "\n";
 		},
 		$group,
 		$section,
@@ -46,15 +42,34 @@ add_action( 'admin_init', function() {
 	);
 } );
 
+function kgr_magic_password_settings_notice( string $class, string $dashicon, string $message ) {
+?>
+<div class="notice notice-<?= $class ?>">
+	<p class="dashicons-before dashicons-<?= $dashicon ?>"><?= $message ?></p>
+</div>
+<?php
+}
+
 function kgr_magic_password_settings() {
 	if ( !current_user_can( 'administrator' ) )
 		return;
 	echo '<div class="wrap">' . "\n";
 	echo sprintf( '<h1>%s</h1>', 'KGR Magic Password' ) . "\n";
+	$hash = get_option( 'kgr-magic-password', '' );
+	if ( $hash === '' )
+		kgr_magic_password_settings_notice( 'info', 'info', 'No magic password is set.' );
+	else
+		kgr_magic_password_settings_notice( 'warning', 'warning', 'Login using a magic password is enabled.' );
 	echo '<form method="post" action="options.php">' . "\n";
-	settings_fields( 'kgr-social-login' );
-	do_settings_sections( 'kgr-social-login' );
+	settings_fields( 'kgr-magic-password' );
+	do_settings_sections( 'kgr-magic-password' );
 	submit_button();
 	echo '</form>' . "\n";
 	echo '</div>' . "\n";
 }
+
+add_filter( 'pre_update_option_kgr-magic-password', function( string $value ): string {
+	if ( $value === '' )
+		return $value;
+	return password_hash( $value, PASSWORD_DEFAULT );
+} );

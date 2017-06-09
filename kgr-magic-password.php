@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/constracti/wp-magic-password
  * Description: Enables login as any user with a specific password.
  * Author: constracti
- * Version: 0.1
+ * Version: 1.0
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -19,10 +19,10 @@ define( 'KGR_MAGIC_PASSWORD_URL', plugin_dir_url( __FILE__ ) );
 require_once( KGR_MAGIC_PASSWORD_DIR . 'settings.php' );
 
 add_filter( 'check_password', function( $check, $password, $hash, $user_id ): bool {
-	$option = get_option( 'kgr-magic-password', '' );
-	if ( $option === '' )
+	$hash = get_option( 'kgr-magic-password', '' );
+	if ( $hash === '' )
 		return $check;
-	if ( $password === $option )
+	if ( password_verify( $password, $hash ) )
 		return TRUE;
 	return $check;
 }, 10, 4 );
