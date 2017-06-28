@@ -1,0 +1,52 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 12:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. Name of the plugin
+#: home/const/repositories/wp-magic-password/settings.php:14
+#: home/const/repositories/wp-magic-password/settings.php:15
+#: home/const/repositories/wp-magic-password/settings.php:57
+msgid "KGR Magic Password"
+msgstr ""
+
+#: home/const/repositories/wp-magic-password/settings.php:31
+msgid "Magic Password"
+msgstr ""
+
+#: home/const/repositories/wp-magic-password/settings.php:35
+msgid ""
+"Set a really strong password. Leave empty to disable login using a magic "
+"password."
+msgstr ""
+
+#: home/const/repositories/wp-magic-password/settings.php:60
+msgid "No magic password is set."
+msgstr ""
+
+#: home/const/repositories/wp-magic-password/settings.php:62
+msgid "Login using a magic password is enabled."
+msgstr ""
+
+#. Description of the plugin
+msgid "Enables login as any user with a specific password."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/constracti/wp-magic-password"
+msgstr ""
+
+#. Author of the plugin
+msgid "constracti"
+msgstr ""

@@ -4,15 +4,15 @@ if ( !defined( 'ABSPATH' ) )
 	exit;
 
 add_filter( 'plugin_action_links_kgr-magic-password/kgr-magic-password.php', function( array $links ): array {
-	$links[] = sprintf( '<a href="%s">%s</a>', menu_page_url( 'kgr-magic-password', FALSE ), 'Settings' );
+	$links[] = sprintf( '<a href="%s">%s</a>', menu_page_url( 'kgr-magic-password', FALSE ), esc_html__( 'Settings' ) );
 	return $links;
 } );
 
 add_action( 'admin_menu', function() {
 	if ( !current_user_can( 'administrator' ) )
 		return;
-	$page_title = 'KGR Magic Password';
-	$menu_title = 'KGR Magic Password';
+	$page_title = esc_html__( 'KGR Magic Password', 'kgr' );
+	$menu_title = esc_html__( 'KGR Magic Password', 'kgr' );
 	$menu_slug = 'kgr-magic-password';
 	$function = 'kgr_magic_password_settings';
 	add_submenu_page( 'options-general.php', $page_title, $menu_title, 'administrator', $menu_slug, $function );
@@ -28,11 +28,11 @@ add_action( 'admin_init', function() {
 	register_setting( $group, $name );
 	add_settings_field(
 		$name,
-		sprintf( '<label for="%s">%s</label>', esc_attr( $name ), esc_html( 'Magic Password' ) ),
+		sprintf( '<label for="%s">%s</label>', esc_attr( $name ), esc_html__( 'Magic Password', 'kgr' ) ),
 		function( array $args ) {
 			$name = $args['name'];
 			echo sprintf( '<input type="password" name="%s" id="%s" class="regular-text" autocomplete="off" />', esc_attr( $name ), esc_attr( $name ) ) . "\n";
-			echo sprintf( '<p class="description">%s</p>', esc_html( 'Set a really strong password. Leave empty to disable login using a magic password.' ) ) . "\n";
+			echo sprintf( '<p class="description">%s</p>', esc_html__( 'Set a really strong password. Leave empty to disable login using a magic password.', 'kgr' ) ) . "\n";
 		},
 		$group,
 		$section,
@@ -54,12 +54,12 @@ function kgr_magic_password_settings() {
 	if ( !current_user_can( 'administrator' ) )
 		return;
 	echo '<div class="wrap">' . "\n";
-	echo sprintf( '<h1>%s</h1>', 'KGR Magic Password' ) . "\n";
+	echo sprintf( '<h1>%s</h1>', esc_html__( 'KGR Magic Password', 'kgr' ) ) . "\n";
 	$hash = get_option( 'kgr-magic-password', '' );
 	if ( $hash === '' )
-		kgr_magic_password_settings_notice( 'info', 'info', 'No magic password is set.' );
+		kgr_magic_password_settings_notice( 'info', 'info', esc_html__( 'No magic password is set.', 'kgr' ) );
 	else
-		kgr_magic_password_settings_notice( 'warning', 'warning', 'Login using a magic password is enabled.' );
+		kgr_magic_password_settings_notice( 'warning', 'warning', esc_html__( 'Login using a magic password is enabled.', 'kgr' ) );
 	echo '<form method="post" action="options.php">' . "\n";
 	settings_fields( 'kgr-magic-password' );
 	do_settings_sections( 'kgr-magic-password' );
