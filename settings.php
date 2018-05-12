@@ -9,17 +9,17 @@ add_filter( 'plugin_action_links_kgr-magic-password/kgr-magic-password.php', fun
 } );
 
 add_action( 'admin_menu', function() {
-	if ( !current_user_can( 'administrator' ) )
+	if ( !current_user_can( 'manage_options' ) )
 		return;
 	$page_title = esc_html__( 'KGR Magic Password', 'kgr' );
 	$menu_title = esc_html__( 'KGR Magic Password', 'kgr' );
 	$menu_slug = 'kgr-magic-password';
 	$function = 'kgr_magic_password_settings';
-	add_submenu_page( 'options-general.php', $page_title, $menu_title, 'administrator', $menu_slug, $function );
+	add_submenu_page( 'options-general.php', $page_title, $menu_title, 'manage_options', $menu_slug, $function );
 } );
 
 add_action( 'admin_init', function() {
-	if ( !current_user_can( 'administrator' ) )
+	if ( !current_user_can( 'manage_options' ) )
 		return;
 	$group = 'kgr-magic-password';
 	$section = 'kgr-magic-password';
@@ -51,7 +51,7 @@ function kgr_magic_password_settings_notice( string $class, string $dashicon, st
 }
 
 function kgr_magic_password_settings() {
-	if ( !current_user_can( 'administrator' ) )
+	if ( !current_user_can( 'manage_options' ) )
 		return;
 	echo '<div class="wrap">' . "\n";
 	echo sprintf( '<h1>%s</h1>', esc_html__( 'KGR Magic Password', 'kgr' ) ) . "\n";
