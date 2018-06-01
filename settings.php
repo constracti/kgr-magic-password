@@ -3,7 +3,7 @@
 if ( !defined( 'ABSPATH' ) )
 	exit;
 
-add_filter( 'plugin_action_links_kgr-magic-password/kgr-magic-password.php', function( array $links ): array {
+add_filter( 'plugin_action_links_kgr-magic-password/index.php', function( array $links ): array {
 	$links[] = sprintf( '<a href="%s">%s</a>', menu_page_url( 'kgr-magic-password', FALSE ), esc_html__( 'Settings' ) );
 	return $links;
 } );

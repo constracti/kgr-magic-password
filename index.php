@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/constracti/wp-magic-password
  * Description: Enables login as any user with a specific password.
  * Author: constracti
- * Version: 1.1.1
+ * Version: 1.1.2
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: kgr
